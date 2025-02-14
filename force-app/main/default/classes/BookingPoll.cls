@@ -28,4 +28,21 @@ public with sharing class BookingPoll {
         }
         return monthList;
     }
+
+    // ✅ Fetch Available Days
+    @AuraEnabled(cacheable=true)
+public static List<String> getAvailableDates(Integer selectedYear, String selectedMonth) {
+    Set<String> dateSet = new Set<String>();
+
+    for (pooling_Data__c record : [
+        SELECT Date__c FROM pooling_Data__c 
+        WHERE Year__c = :selectedYear AND Month__c = :selectedMonth 
+        ORDER BY Date__c ASC
+    ]) {
+        dateSet.add(record.Date__c.format()); // Convert to string format
+    }
+
+    return new List<String>(dateSet);
+}
+
 }

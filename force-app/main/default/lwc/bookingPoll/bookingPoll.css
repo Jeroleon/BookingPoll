@@ -10,7 +10,7 @@ lightning-card {
     padding: 20px;
     background-color: #f9f9f9;
     width: 100%;  
-        
+
 
 }
 .year-label {
@@ -58,7 +58,7 @@ lightning-card {
 
 .date-box {
     width: 80px;
-    height: 100px;
+    height: 85px;
     background-color: #4a3aff;
     color: white;
     text-align: center;
@@ -66,6 +66,7 @@ lightning-card {
     padding: 10px;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    font-size: 14px;
 }
 
 .date-box:hover {

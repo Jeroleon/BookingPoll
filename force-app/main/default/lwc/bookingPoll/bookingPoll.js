@@ -1,12 +1,11 @@
 import { LightningElement, track, wire } from 'lwc';
 import getAvailableYears from '@salesforce/apex/BookingPoll.getAvailableYears';
 import getAvailableMonths from '@salesforce/apex/BookingPoll.getAvailableMonths';
+import getAvailableDates from '@salesforce/apex/BookingPoll.getAvailableDates';
 
 export default class CalendarBooking extends LightningElement {
     @track availableYears = [];
-    @track availableMonths = [
-        
-    ];
+    @track availableMonths = [];
 
     @track availableDates = [];
     @track availableSlots = [];
@@ -68,12 +67,26 @@ export default class CalendarBooking extends LightningElement {
         this.showDates = true;
         this.showSlots = false;
 
+        getAvailableDates({ selectedYear: this.selectedYear, selectedMonth: this.selectedMonth })
+            .then(data => {
+                this.availableDates = data.map(date => {
+                    const fullDate = new Date(`${this.selectedYear}-${this.selectedMonth}-${date}`);
+                    const dayName = fullDate.toLocaleDateString('en-US', { weekday: 'short' });
+
+                    return {
+                        id: date,
+                        month: this.selectedMonth,
+                        date: date,
+                        day: dayName
+                    };
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching dates:', error);
+            });
+
         // Load available dates for the selected month (Example Data)
-        this.availableDates = [
-            { id: '1', month: selectedMonth.name, date: '14', day: 'Fri' },
-            { id: '2', month: selectedMonth.name, date: '18', day: 'Tue' },
-            { id: '3', month: selectedMonth.name, date: '27', day: 'Thu' }
-        ];
+      
     }
 
     handleDateClick(event) {
@@ -88,6 +101,7 @@ export default class CalendarBooking extends LightningElement {
         this.selectedDate = selectedDate.date;
         this.selectedSlot = null;
         this.showSlots = true;
+        
 
         // Load available time slots (Example Data)
         this.availableSlots = [
