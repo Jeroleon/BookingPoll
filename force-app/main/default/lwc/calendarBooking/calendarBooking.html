@@ -1,0 +1,40 @@
+<template>
+    <lightning-card title="Book an Appointment" icon-name="standard:event">
+        <div class="slds-m-around_medium">
+            
+            <!-- Calendar Selection (Flatpickr) -->
+            <div class="calendar-container">
+                <input type="text" class="flatpickr-input" placeholder="Select a meeting date" />
+            </div>
+
+            <!-- Time Zone Selection -->
+            <lightning-combobox label="Select Time Zone" 
+                                options={timeZones} 
+                                value={selectedTimeZone} 
+                                onchange={handleTimeZoneChange}>
+            </lightning-combobox>
+
+            <!-- Available Slots -->
+            <template if:true={timeSlots.length}>
+                <lightning-layout multiple-rows class="slds-m-top_medium">
+                    <template for:each={timeSlots} for:item="slot">
+                        <lightning-layout-item key={slot.id} size="4" class="slds-p-around_x-small">
+                            <lightning-button label={slot.time} 
+                                              title={slot.time} 
+                                              variant={slot.variant}  
+                                              onclick={handleSlotClick} 
+                                              data-id={slot.id}>
+                            </lightning-button>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </template>
+
+            <!-- Action Buttons -->
+            <div class="slds-m-top_medium">
+                <lightning-button label="Book Now" variant="brand" onclick={handleBookNow} disabled={isBookNowDisabled}></lightning-button>
+                <lightning-button label="Cancel Booking" variant="destructive" class="slds-m-left_small" onclick={handleCancelBooking} disabled={isBookNowDisabled}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

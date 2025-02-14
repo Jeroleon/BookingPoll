@@ -1,0 +1,110 @@
+.year-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+lightning-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    width: 100%;  
+        
+
+}
+.year-label {
+    margin-right: 10px;
+    padding-top: 8px;
+    font-size: 18px;
+}
+
+.year-dropdown {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.month-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.month-box {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.month-box:hover {
+    background-color: #666;
+}
+
+.selected-month {
+    background-color: #ff9800 !important;
+}
+
+.date-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.date-box {
+    width: 80px;
+    height: 100px;
+    background-color: #4a3aff;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.date-box:hover {
+    background-color: #372fcc;
+    transform: scale(1.05);
+}
+
+.selected {
+    background-color: #ff9800 !important;
+}
+
+.slot-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.slot-box {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.slot-box:hover {
+    background-color: #666;
+}
+
+.selected-slot {
+    background-color: #ff9800 !important;
+}
+
+.confirmation-box {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: green;
+    font-weight: bold;
+}

@@ -1,0 +1,63 @@
+<template>
+    <!-- Year Selection -->
+    <lightning-card  class="Book-Appointment"  title="Book an Appointment"  icon-name="standard:event"> </lightning-card>
+    <div class="year-container">
+        <label class="year-label">Select Year:</label>
+        <select id="year" class="year-dropdown" onchange={handleYearChange}>
+            <template for:each={availableYears} for:item="year">
+                <option key={year} value={year}>{year}</option>
+            </template>
+        </select>
+    </div>
+
+    <!-- Month Selection (Shown After Selecting Year) -->
+    <template if:true={showMonths}>
+        <div class="month-container">
+            <template for:each={availableMonths} for:item="month">
+                <div key={month.id} 
+                     class="month-box {month.isSelected ? 'selected-month' : ''}" 
+                     onclick={handleMonthClick} 
+                     data-id={month.id}>
+                    {month.name}
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <!-- Date Selection (Shown After Selecting a Month) -->
+    <template if:true={showDates}>
+        <div class="date-container">
+            <template for:each={availableDates} for:item="date">
+                <div key={date.id} 
+                     class="date-box {date.isSelected ? 'selected' : ''}" 
+                     onclick={handleDateClick} 
+                     data-id={date.id}>
+                    <div class="month">{date.month}</div>
+                    <div class="date">{date.date}</div>
+                    <div class="day">{date.day}</div>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <!-- Slot Selection (Shown After Selecting a Date) -->
+    <template if:true={showSlots}>
+        <div class="slot-container">
+            <template for:each={availableSlots} for:item="slot">
+                <div key={slot.time} 
+                     class="slot-box {slot.isSelected ? 'selected-slot' : ''}" 
+                     onclick={handleSlotClick} 
+                     data-time={slot.time}>
+                    {slot.time}
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <!-- Confirmation Message -->
+    <template if:true={selectedSlot}>
+        <div class="confirmation-box">
+            Booking Confirmed for {selectedYear} {selectedMonth} {selectedDate} at {selectedSlot}
+        </div>
+    </template>
+</template>

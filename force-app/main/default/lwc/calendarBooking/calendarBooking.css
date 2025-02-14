@@ -1,0 +1,153 @@
+/* Existing styles remain unchanged */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.calendar-container {
+    width: 300px;
+    position: relative;
+}
+
+.flatpickr-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.slots {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.slots-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.slot {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #e0e0e0;
+}
+
+.slot.selected {
+    background-color: #5e35b1;
+    color: white;
+}
+
+.slot.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.slot:hover:not(.disabled) {
+    background-color: #d1c4e9;
+}
+
+/* Updated button styles */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Book Now button */
+.book-now {
+    background-color: #5e35b1;
+    color: white;
+}
+
+.book-now:hover:not(:disabled) {
+    background-color: #4a148c;
+}
+
+.book-now:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* New styles for Cancel and Reschedule buttons */
+.cancel-btn {
+    background-color: #d32f2f;
+    color: white;
+}
+
+.cancel-btn:hover:not(:disabled) {
+    background-color: #b71c1c;
+}
+
+.reschedule-btn {
+    background-color: #ff9800;
+    color: white;
+}
+
+.reschedule-btn:hover:not(:disabled) {
+    background-color: #e65100;
+}
+
+/* Time Zone Selector */
+.time-zone-selector {
+    margin-top: 15px;
+    width: 100%;
+}
+
+.time-zone-selector select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.calendar-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px; /* Adds spacing below */
+}
+
+.flatpickr-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.flatpickr-input:focus {
+    border-color: #5e35b1; /* Highlight when focused */
+    outline: none;
+    box-shadow: 0 0 5px rgba(94, 53, 177, 0.5);
+}
+
+.flatpickr-calendar {
+    z-index: 10000 !important; /* Ensures the calendar dropdown appears above other elements */
+}
+
+.flatpickr-day.selected {
+    background-color: #5e35b1 !important;
+    color: white !important;
+    border-radius: 5px;
+}
