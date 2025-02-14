@@ -1,13 +1,11 @@
 import { LightningElement, track, wire } from 'lwc';
 import getAvailableYears from '@salesforce/apex/BookingPoll.getAvailableYears';
+import getAvailableMonths from '@salesforce/apex/BookingPoll.getAvailableMonths';
 
 export default class CalendarBooking extends LightningElement {
     @track availableYears = [];
     @track availableMonths = [
-        { id: '1', name: 'January' },
-        { id: '2', name: 'February' },
-        { id: '3', name: 'March' },
-        { id: '4', name: 'April' }
+        
     ];
 
     @track availableDates = [];
@@ -31,6 +29,7 @@ export default class CalendarBooking extends LightningElement {
         }
     }
 
+
     handleYearChange(event) {
         this.selectedYear = event.target.value;
         this.selectedMonth = null;
@@ -39,6 +38,19 @@ export default class CalendarBooking extends LightningElement {
         this.showMonths = true;
         this.showDates = false;
         this.showSlots = false;
+
+        getAvailableMonths({ selectedYear: this.selectedYear })
+        .then(data => {
+            this.availableMonths = data.map((month, index) => ({
+                id: (index + 1).toString(),
+                name: month,
+                isSelected: false
+            }));
+        })
+        .catch(error => {
+            console.error('Error fetching months:', error);
+        });
+
     }
 
     handleMonthClick(event) {

@@ -1,6 +1,6 @@
 public with sharing class BookingPoll {
     // ✅ Fetch Available Years
-    
+
     @AuraEnabled(cacheable=true)
     public static List<Integer> getAvailableYears() {
         Set<Integer> yearSet = new Set<Integer>();
@@ -13,5 +13,19 @@ public with sharing class BookingPoll {
         yearList.sort();  
 
         return yearList;
+    }
+
+    // ✅ Fetch Available Months
+    @AuraEnabled(cacheable=true)
+    public static List<String> getAvailableMonths(Integer selectedYear) {
+        List<String> monthList = new List<String>();
+
+        // Fetch distinct months for the selected year
+        AggregateResult[] results = [SELECT Month__c FROM pooling_Data__c WHERE Year__c = :selectedYear GROUP BY Month__c ORDER BY Month__c ASC];
+
+        for (AggregateResult ar : results) {
+            monthList.add((String) ar.get('Month__c'));
+        }
+        return monthList;
     }
 }
